@@ -7,7 +7,7 @@ git commit: confirma los cambios
 git commit -m "mensaje": confirma los cambios y agrega un mensaje a la confimación.
 git log: muestra el historico de los commit.
 git push origin main: agrega los los cambios.
-git pill origin main: extrae los cambios del github.
+git pull origin main: extrae los cambios del github.
 
 git remote add origin "direcion repositorio": conecta al repositorio
 
