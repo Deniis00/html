@@ -16,5 +16,5 @@ git checkout nombre_de_la_rama: para acceder a la rama.
 
 git checkout main: vuele al main(principal).
 git merge nombre_de_la_rama: para confirmar los cambios al "main".
-buenisimo
+
 
