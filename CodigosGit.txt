@@ -1,0 +1,18 @@
+git clone: clona el repositorio de la web a la PC.
+git init : inicio de repositosio pc a web
+git status: repostado el estado del repositorio, si hay nuevas actualizaciones. Muestra las nuevas agregadas despues del "git add"
+git add nombre_del_archivo.txt: agregar uno a uno
+git add .(punto): agregar todos los pendientes. 
+git commit: confirma los cambios
+git commit -m "mensaje": confirma los cambios y agrega un mensaje a la confimación.
+git log: muestra el historico de los commit.
+git push origin main: agrega los los cambios.
+git pill origin main: extrae los cambios del github.
+
+git remote add origin "direcion repositorio": conecta al repositorio
+
+git branch nombre_de_la_rama: crear ramas.
+git checkout nombre_de_la_rama: para acceder a la rama.
+
+git checkout main: vuele al main(principal).
+git merge nombre_de_la_rama: para confirmar los cambios al "main".
