@@ -1,4 +1,4 @@
-git clone: clona el repositorio de la web a la PC.
+git clone url: clona el repositorio de la web a la PC.
 git init : inicio de repositosio pc a web
 git status: repostado el estado del repositorio, si hay nuevas actualizaciones. Muestra las nuevas agregadas despues del "git add"
 git add nombre_del_archivo.txt: agregar uno a uno
