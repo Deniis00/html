@@ -1,20 +1,60 @@
-git clone url: clona el repositorio de la web a la PC.
-git init : inicio de repositosio pc a web
-git status: repostado el estado del repositorio, si hay nuevas actualizaciones. Muestra las nuevas agregadas despues del "git add"
-git add nombre_del_archivo.txt: agregar uno a uno
-git add .(punto): agregar todos los pendientes. 
-git commit: confirma los cambios
-git commit -m "mensaje": confirma los cambios y agrega un mensaje a la confimación.
-git log: muestra el historico de los commit.
-git push origin main: agrega los los cambios.
-git pull origin main: extrae los cambios del github.
+# Clona el repositorio de la web a la PC.
+git clone url
 
-git remote add origin "direcion repositorio": conecta al repositorio
+# Marca el inicion del proyecto
+  git init
 
-git branch nombre_de_la_rama: crear ramas.
-git checkout nombre_de_la_rama: para acceder a la rama.
+# Repostado el estado del repositorio, si hay nuevas actualizaciones. Muestra las nuevas agregadas despues del "git add"
+git status
 
-git checkout main: vuele al main(principal).
-git merge nombre_de_la_rama: para confirmar los cambios al "main"
+# Agrega archivo por archivo
+git add nombre_del_archivo.txt
+
+# Agregar todos los pendientes(cambios, modificaciones). 
+git add .(punto)
+
+# Confirma los cambios y agrega un mensaje a la confimación.
+git commit -m "mensaje"
+
+# Muestra el historico de los commit.
+git log
+
+# Agrega los cambios.
+git push origin main
+
+#Clona el repositorio de la web a la PC. Una vez configurado el repositorio
+git pull origin main
+
+# Conecta al repositorio
+git remote add origin "direcion repositorio"
+
+# Crear ramas.
+git branch nombre_de_la_rama
+
+# Para acceder a la rama.
+git checkout nombre_de_la_rama
+
+# Vuelve al main(principal).
+git checkout main
+
+# Para confirmar los cambios al "main"
+git merge nombre_de_la_rama
+
+# Agrega el nombre del usuario del git
+git config --global user.name"nombre del personaje"
+
+# Visualiza el usuario cargado
+git config --global user.name
 
 
+# Agrega el email del usuario del git
+git config --global user.email"correo del personaje"
+
+
+# Configura los colores
+git config --global color.ui true
+
+# Ver configuraciones
+
+#Agrega el nombre del usuario del git
+git config --global --list
