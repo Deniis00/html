@@ -1,5 +1,13 @@
-# Clona el repositorio de la web a la PC.
+# Clona el repositorio de la web a la PC./ sin compartir
 git clone url
+
+#Para decir a git que se conecta con el remoto
+git remote add origin <url del repositorio>
+
+# Para eliminar la direccion del reposito remoto
+git remote remove origin
+
+
 
 # Marca el inicion del proyecto
   git init
@@ -13,11 +21,20 @@ git add nombre_del_archivo.txt
 # Agregar todos los pendientes(cambios, modificaciones). 
 git add .(punto)
 
+#Agregar todos 
+git add -A
+
 # Confirma los cambios y agrega un mensaje a la confimación.
 git commit -m "mensaje"
 
 # Muestra el historico de los commit.
 git log
+
+# Borrar Commit pero no toca el codigo
+git reset --soft <el commit>
+
+# Borrar Commit y el codigo
+git reset --head <el commit>
 
 # Agrega los cambios.
 git push origin main
@@ -34,7 +51,7 @@ git branch nombre_de_la_rama
 # Para acceder a la rama.
 git checkout nombre_de_la_rama
 
-# Vuelve al main(principal).
+# Vuelve al main(principal) o al  ultimo commit
 git checkout main
 
 # Para confirmar los cambios al "main"
@@ -58,3 +75,6 @@ git config --global color.ui true
 
 #Agrega el nombre del usuario del git
 git config --global --list
+
+#ayuda
+git help
