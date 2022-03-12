@@ -27,6 +27,9 @@ git add -A
 # Confirma los cambios y agrega un mensaje a la confimación.
 git commit -m "mensaje"
 
+# Cambiar mensaje de commit
+git commit --amend -m "<mensaje nuevo>"
+
 # Muestra el historico de los commit.
 git log
 
@@ -38,6 +41,9 @@ git reset --head <el commit>
 
 # Agrega los cambios.
 git push origin main
+
+# fuerza subir comit
+git push origin main -f
 
 #Clona el repositorio de la web a la PC. Una vez configurado el repositorio
 git pull origin main
