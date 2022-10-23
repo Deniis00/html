@@ -39,6 +39,9 @@ git reset --soft <el commit>
 # Borrar Commit y el codigo
 git reset --head <el commit>
 
+#renombrar el arbol
+git branch -m main
+
 # Agrega los cambios.
 git push origin main
 
