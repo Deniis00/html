@@ -7,8 +7,6 @@ git remote add origin <url del repositorio>
 # Para eliminar la direccion del reposito remoto
 git remote remove origin
 
-
-
 # Marca el inicion del proyecto
   git init
 
