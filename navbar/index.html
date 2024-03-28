@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar con Subopciones</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #sidebar {
+            width: 90px;
+            background: #000;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            overflow: auto;
+            z-index: 2;
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #444;
+            font-size: 10px;
+        }
+
+        #sidebar ul li:hover {
+            background: #333;
+        }
+
+        .suboptions-panel {
+            background-color: #333;
+            color: white;
+            position: fixed;
+            left: 90px;
+            top: 0;
+            width: auto;
+            min-width: 100px;
+            /* Se ajusta automáticamente según el contenido hasta el máximo. */
+            max-width: 50vw;
+            /* Máximo hasta la mitad de la pantalla */
+            height: 75vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            transition: transform 0.2s ease;
+            transform: translateX(-100%);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+        }
+
+        .suboptions-panel.active {
+            transform: translateX(0);
+        }
+
+        .panel-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #444;
+            box-sizing: border-box;
+        }
+
+        .group {
+            margin: 10px;
+            max-width: 150px;
+            width: 100%;
+
+        }
+
+        .group h3 {
+            color: #ccc;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .group div {
+            padding: 7.5px 10px;
+            color: #ccc;
+            font-size: 12px;
+
+        }
+
+        .group div:hover {
+            background-color: #1f1f1f;
+            color: white;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <ul>
+            <li onclick="openSuboptions('Opción 1')">Opción 1</li>
+            <li onclick="openSuboptions('Opción 2')">Opción 2</li>
+            <li onclick="openSuboptions('Opción 3')">Opción 3</li>
+            <li onclick="openSuboptions('Reportes')">Reportes</li>
+        </ul>
+    </div>
+    <div id="suboptions-panel" class="suboptions-panel">
+        <div class="panel-header">
+            <span id="suboptions-title">Seleccione una opción</span>
+            <span class="close-btn" onclick="closeSuboptions()">&times;</span>
+        </div>
+        <!-- El contenido de subopciones se genera dinámicamente -->
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const suboptionsPanel = document.getElementById('suboptions-panel');
+            let isTransitioning = false;
+            let lastOption = '';
+
+            function openSuboptions(optionId) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                
+                // Si hay una opción ya abierta y es diferente a la actual, ciérrala
+                if (lastOption && lastOption !== optionId) {
+                    suboptionsPanel.classList.remove('active');
+                    setTimeout(() => {
+                        buildSuboptions(optionId);
+                        suboptionsPanel.classList.add('active');
+                        lastOption = optionId;
+                        isTransitioning = false;
+                    }, 310); // Espera que termine la animación de cierre antes de abrir otra opción
+                } else if (!lastOption) {
+                    // Si no hay una opción abierta, simplemente construye y muestra las subopciones
+                    buildSuboptions(optionId);
+                    suboptionsPanel.classList.add('active');
+                    lastOption = optionId;
+                    isTransitioning = false;
+                } else {
+                    // Si se hace clic en la misma opción, simplemente ciérrala
+                    closeSuboptions();
+                    isTransitioning = false;
+                }
+            }
+
+            function buildSuboptions(optionId) {
+                const suboptionsTitle = document.getElementById('suboptions-title');
+                suboptionsTitle.textContent = optionId;
+                suboptionsPanel.innerHTML = '<div class="panel-header">' + suboptionsTitle.outerHTML + '<span class="close-btn" onclick="closeSuboptions()">&times;</span></div>';
+
+                // Construcción de las subopciones...
+                const allSuboptions = {
+                    'Opción 1': ['Subopción 1a', 'Subopción 1b', 'Subopción 1c'],
+                    'Opción 2': ['Subopción 2a', 'Subopción 2b', 'Subopción 2c'],
+                    'Opción 3': ['Subopción 3a', 'Subopción 3b', 'Subopción 3c'],
+                    'Reportes': {
+                        'Ventas': ['Venta 1', 'Venta 2'],
+                        'Productos': ['Producto 1', 'Producto 2'],
+                        'Compras': ['Compras', 'Compras Anuladas'],
+                        'Ventas2': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas3': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas4': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas5': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas6': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas7': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas8': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas9': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas10': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                        'Ventas11': ['Ventas Listas', 'Ventas Pagadas', 'Ventas Anuladas', 'Ventas Detalladas'],
+                    }
+                };
+
+                const suboptions = allSuboptions[optionId];
+                if (typeof suboptions === 'object' && !Array.isArray(suboptions)) {
+                    for (const group in suboptions) {
+                        const groupDiv = document.createElement('div');
+                        groupDiv.classList.add('group');
+                        const groupTitle = document.createElement('h3');
+                        groupTitle.textContent = group;
+                        groupDiv.appendChild(groupTitle);
+
+                        suboptions[group].forEach(suboption => {
+                            const suboptionDiv = document.createElement('div');
+                            suboptionDiv.textContent = suboption;
+                            groupDiv.appendChild(suboptionDiv);
+                        });
+
+                        suboptionsPanel.appendChild(groupDiv);
+                    }
+                } else {
+                    const groupDiv = document.createElement('div');
+                    groupDiv.classList.add('group');
+                    suboptions.forEach(suboption => {
+                        const suboptionDiv = document.createElement('div');
+                        suboptionDiv.textContent = suboption;
+                        groupDiv.appendChild(suboptionDiv);
+                    });
+                    suboptionsPanel.appendChild(groupDiv);
+                }
+
+                suboptionsPanel.classList.add('active');
+                lastOption = optionId;
+                isTransitioning = false;
+
+                const suboptionElements = suboptionsPanel.querySelectorAll('.group div');
+                suboptionElements.forEach(div => {
+                    div.addEventListener('click', () => {
+                        closeSuboptions(); // Cierra el panel cuando se selecciona una subopción
+                    });
+                });
+
+            }
+
+            function closeSuboptions() {
+                if (isTransitioning) return;
+                suboptionsPanel.classList.remove('active');
+                lastOption = '';
+            }
+
+            window.openSuboptions = openSuboptions;
+            window.closeSuboptions = closeSuboptions;
+        });
+
+    </script>
+</body>
+
+</html>
